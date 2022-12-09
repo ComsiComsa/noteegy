@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "watch:sass": "sass src/sass/main.scss src/assets/main.css -w",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^9.6.0",
     "bulma": "^0.9.4",
+    "date-fns": "^2.29.3",
+    "firebase": "^9.15.0",
+    "pinia": "^2.0.27",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
