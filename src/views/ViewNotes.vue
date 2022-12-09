@@ -66,7 +66,9 @@
 
     const addNote = () => {
         storeNotes.addNote(newNote)
-        newNote = { title: '', content: ''}
+
+        newNote.title = ''
+        newNote.content = ''
     }
 
     const deleteNote = (id) => {

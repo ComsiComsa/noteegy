@@ -11,5 +11,5 @@
     Imports
  */
 
-import Header from '@/components/layout/Header.vue';
+import Header from '/src/components/layout/Header.vue';
 </script>
