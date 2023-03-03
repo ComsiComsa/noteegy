@@ -22,6 +22,13 @@
                     {{ formTitle }}
                 </div>
 
+                <div
+                    v-if="error"
+                    class="notification is-danger"
+                >
+                    {{ error }}
+                </div>
+
                 <form
                     @submit.prevent="onSubmit"
                 >
@@ -69,7 +76,7 @@
     imports
  */
 
-    import { ref, computed, reactive } from 'vue';
+    import { ref, computed, reactive, watch } from 'vue';
     import { useStoreAuth } from '@/stores/storeAuth';
 
 /*
@@ -77,6 +84,7 @@
  */
 
     const register = ref(false)
+    const error = ref(undefined)
     const storeAuth = useStoreAuth()
     const formTitle = computed(() => register.value ? 'Register' : 'Login')
     const credentials = reactive({
@@ -85,15 +93,27 @@
     })
 
 /*
+    watchers
+ */
+
+    watch(register, (val) => {
+		error.value = undefined
+    })
+
+/*
     methods
  */
 
     const onSubmit = () => {
-        if (register.value) {
-            storeAuth.registerUser(credentials)
-        } else {
-            storeAuth.loginUser(credentials)
-        }
+		error.value = undefined
+
+        const method = register.value ?
+            'registerUser' : 'loginUser'
+
+        storeAuth[method](credentials)
+			.then((message) => {
+				error.value = message
+			})
     }
 </script>
 

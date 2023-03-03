@@ -28,29 +28,24 @@ export const useStoreAuth = defineStore('storeAuth', {
         },
 
         registerUser({ email, password }) {
-            createUserWithEmailAndPassword(auth, email, password)
+            return createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     const user = userCredential.user
                     console.log('User => ', user)
                 })
                 .catch((error) => {
-                    const errorCode = error.code
-                    const errorMessage = error.message
-                    console.log(errorCode + ' => ' + errorMessage)
-                })
+					return error.message
+				})
         },
 
         loginUser({ email, password }) {
-            signInWithEmailAndPassword(auth, email, password)
+            return signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     const user = userCredential.user
-                    console.log('User => ', user)
                 })
                 .catch((error) => {
-                    const errorCode = error.code
-                    const errorMessage = error.message
-                    console.log(errorCode + ' => ' + errorMessage)
-                })
+					return error.message
+				})
         },
 
         logoutUser() {
